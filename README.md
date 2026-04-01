@@ -7,6 +7,8 @@ Streamlit + LangChain を使った ChatGPT 風の AI チャットアプリ
 - ChatGPT 風のモダンな UI
 - 会話履歴を考慮した自然な対話
 - 日本語での技術アシスタント
+- サイドバーでモデル・Temperature をリアルタイム切り替え
+- セッション累積コストの表示
 - シンプルな単一ファイル構成
 
 ## 技術スタック
@@ -14,7 +16,7 @@ Streamlit + LangChain を使った ChatGPT 風の AI チャットアプリ
 - **Python 3.10+**
 - **Streamlit**: チャット UI フレームワーク
 - **LangChain**: LLM 統合フレームワーク
-- **OpenAI API**: gpt-4o-mini モデル（temperature: 0.7）
+- **OpenAI API**: gpt-4o-mini / gpt-4o / gpt-4.1 / gpt-4.1-mini
 
 ## セットアップ
 
@@ -68,6 +70,15 @@ streamlit run app.py
 3. AI が会話履歴を考慮して日本語で返答します
 4. 会話は session_state に保存され、ページをリロードするまで保持されます
 
+### サイドバーのオプション
+
+| オプション | 説明 |
+|---|---|
+| Choose a model | 使用するモデルを選択（gpt-4o-mini / gpt-4o / gpt-4.1 / gpt-4.1-mini） |
+| Temperature | 応答のランダム性を調整（0.0: 決定的 〜 2.0: 創造的、デフォルト: 0.7） |
+| Clear Conversation | 会話履歴とコストをリセット |
+| Cost | セッション累積コストを表示 |
+
 ## プロジェクト構成
 
 ```
@@ -79,32 +90,6 @@ streamlit-ai-chat/
 ├── .gitignore         # Git 除外設定
 ├── README.md          # このファイル
 └── CLAUDE.md          # Claude Code 用ガイド
-```
-
-## カスタマイズ
-
-### モデルの変更
-
-`app.py` の 17 行目でモデルを変更できます：
-
-```python
-model="gpt-4o-mini",  # gpt-4o, gpt-4-turbo など
-```
-
-### システムプロンプトの変更
-
-`app.py` の 24 行目でシステムプロンプトを変更できます：
-
-```python
-SYSTEM_PROMPT = "あなたのカスタムプロンプト"
-```
-
-### Temperature の調整
-
-`app.py` の 18 行目で温度パラメータを調整できます（0.0〜2.0）：
-
-```python
-temperature=0.7,  # 低いほど決定的、高いほど創造的
 ```
 
 ## ライセンス
